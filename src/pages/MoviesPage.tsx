@@ -1,7 +1,9 @@
+import MovieList from "../components/MovieList.tsx";
+
 const MoviesPage = () => {
     return (
         <div>
-            Movies Page
+            <MovieList/>
         </div>
     );
 };

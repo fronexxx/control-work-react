@@ -9,7 +9,7 @@ const initMovieSliceState: MovieStateType = {movies: []};
 
 const loadMovies = createAsyncThunk("loadMovies", async (_, thunkApi) => {
     try {
-        const movies = getMovies();
+        const movies = await getMovies();
         return thunkApi.fulfillWithValue(movies);
     } catch (e){
         console.log(e);
