@@ -17,7 +17,6 @@ const loadMovies = createAsyncThunk("loadMovies", async (_, thunkApi) => {
         const movies = await getMovies();
         return thunkApi.fulfillWithValue(movies);
     } catch (e){
-        console.log(e);
         return thunkApi.rejectWithValue(e);
     }
 })
@@ -27,7 +26,6 @@ const loadSelectedMovie = createAsyncThunk("loadSelectedMovie", async (id: strin
         const movie = await getMovieById(id);
         return thunkAPI.fulfillWithValue(movie);
     } catch (e) {
-        console.log(e);
         return thunkAPI.rejectWithValue(e);
     }
 });

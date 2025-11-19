@@ -7,13 +7,15 @@ import '../css/MovieCard.css';
 
 const MovieList = () => {
     const dispatch = useAppDispatch();
+    const {moviesByGenre, selectedGenre} = useAppSelector(state => state.genreStoreSlice);
     const movies = useAppSelector(state => state.movieStoreSlice.movies);
+    const moviesToShow = selectedGenre ? moviesByGenre : movies;
     useEffect(() => {
         dispatch(movieActions.loadMovies());
     }, []);
     return (
         <div className="movie-grid">
-            {movies.map(movie => (
+            {moviesToShow.map(movie => (
                 <MovieCard key={movie.id} movie={movie} />
             ))}
         </div>
