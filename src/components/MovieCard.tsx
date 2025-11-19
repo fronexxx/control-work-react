@@ -1,6 +1,7 @@
 import type {IMovie} from "../models/IMovie";
 import '../css/MovieCard.css';
 import {Link} from "react-router";
+import {posterUrl} from "../urls/urls.ts";
 
 
 interface MovieCardProps {
@@ -8,14 +9,13 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({movie}: MovieCardProps) => {
-    const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
     return (
         <div className="movie-card">
             <Link to={`/movies/${movie.id}`}>
                 <img
                     className="movie-card__poster"
-                    src={imageBaseUrl + movie.poster_path}
+                    src={posterUrl + movie.poster_path}
                     alt={movie.title}
                 />
 

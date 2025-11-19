@@ -1,7 +1,9 @@
+import MovieInfo from "../components/MovieInfo.tsx";
+
 const MoviesDetailsPage = () => {
     return (
         <div>
-            Movies Details Page
+            <MovieInfo/>
         </div>
     );
 };
