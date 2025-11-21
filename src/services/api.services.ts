@@ -4,6 +4,8 @@ import type {IMovieResponse} from "../models/IMovieResponse.ts";
 import type {IMovieExpanded} from "../models/IMovieExpanded.ts";
 import {API_KEY, BASE_URL} from "../urls/urls.ts";
 import type {IGenres} from "../models/IGenres.ts";
+import type {ITrailer} from "../models/ITrailer.ts";
+import type {ITrailerResponse} from "../models/ITrailerResponse.ts";
 
 
 const axiosInstance = axios.create({
@@ -20,6 +22,11 @@ export const getMovies = async (): Promise<IMovie[]> => {
 export const getMovieById = async (id: string): Promise<IMovieExpanded>=> {
     const {data: movie} = await axiosInstance.get<IMovieExpanded>(`/movie/${id}`);
     return movie;
+}
+
+export const getMovieTrailerById = async (id: string): Promise<ITrailer[]> => {
+    const {data: {results: MovieTrailer}} = await axiosInstance.get<ITrailerResponse>(`/movie/${id}/videos`);
+    return MovieTrailer;
 }
 
 export const getGenres = async (): Promise<IGenres[]> => {

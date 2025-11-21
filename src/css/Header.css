@@ -9,11 +9,49 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
 
     z-index: 999;
 }
-p{
+.genre-select {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.genre-select:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.genre-select:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.genre-select option {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.header-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.header-user img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.header-user p {
     color: white;
 }
