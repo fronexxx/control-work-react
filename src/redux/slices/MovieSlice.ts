@@ -12,9 +12,9 @@ const initMovieSliceState: MovieStateType = {
     selectedMovie: null,
 };
 
-const loadMovies = createAsyncThunk("loadMovies", async (_, thunkApi) => {
+const loadMovies = createAsyncThunk("loadMovies", async (page: string, thunkApi) => {
     try {
-        const movies = await getMovies();
+        const movies = await getMovies(page);
         return thunkApi.fulfillWithValue(movies);
     } catch (e){
         return thunkApi.rejectWithValue(e);

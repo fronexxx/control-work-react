@@ -3,21 +3,26 @@ import {useAppDispatch, useAppSelector} from "../redux/store.ts";
 import {type ChangeEvent, useEffect} from "react";
 import {genreActions} from "../redux/slices/GenreSlice.ts";
 import {movieActions} from "../redux/slices/MovieSlice.ts";
+import {useSearchParams} from "react-router";
 
 const HeaderComponent = () => {
     const genres = useAppSelector(state => state.genreStoreSlice.genres);
     const dispatch = useAppDispatch();
+    const [, setSearchParams] = useSearchParams({page: '1'});
     useEffect(() => {
         dispatch(genreActions.loadGenres())
     }, []);
 
     const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const genreId = e.target.value;
+
+        setSearchParams({page: '1'});
+
         if (genreId === '') {
             dispatch(genreActions.clearSelectedGenre());
-            dispatch(movieActions.loadMovies());
+            dispatch(movieActions.loadMovies('1'));
         } else {
-            dispatch(genreActions.loadMoviesByGenres(genreId));
+            dispatch(genreActions.loadMoviesByGenres({genreId, page: '1'}));
         }
     };
     return (

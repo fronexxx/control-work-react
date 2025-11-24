@@ -14,8 +14,10 @@ const axiosInstance = axios.create({
     headers: {}
 });
 
-export const getMovies = async (): Promise<IMovie[]> => {
-    const {data: {results}} = await axiosInstance.get<IMovieResponse>('/discover/movie');
+export const getMovies = async (page: string): Promise<IMovie[]> => {
+    const {data: {results}} = await axiosInstance.get<IMovieResponse>('/discover/movie',{
+        params: {page: page}
+    });
     return results;
 };
 
@@ -34,9 +36,9 @@ export const getGenres = async (): Promise<IGenres[]> => {
     return genres;
 };
 
-export const getMoviesByGenres = async (genreId: string): Promise<IMovie[]> => {
+export const getMoviesByGenres = async (genreId: string, page: string): Promise<IMovie[]> => {
     const {data: genreById} = await axiosInstance.get<IMovieResponse>('/discover/movie', {
-        params: {with_genres: genreId},
+        params: {with_genres: genreId, page},
     });
     return genreById.results;
 };

@@ -21,9 +21,9 @@ const loadGenres = createAsyncThunk("loadGenres", async (_, thunkApi) => {
 
 const loadMoviesByGenres = createAsyncThunk(
     "loadMoviesByGenres",
-    async (genreId: string, thunkAPI) => {
+    async ({genreId, page}: { genreId: string, page: string }, thunkAPI) => {
         try {
-            const movies = await getMoviesByGenres(genreId);
+            const movies = await getMoviesByGenres(genreId, page);
             return thunkAPI.fulfillWithValue({genreId, movies})
         }catch (e){
             return thunkAPI.rejectWithValue(e);
