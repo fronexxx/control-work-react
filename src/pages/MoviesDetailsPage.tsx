@@ -1,5 +1,5 @@
-import MovieInfo from "../components/MovieInfo.tsx";
-import MovieTrailerComponent from "../components/MovieTrailerComponent.tsx";
+import MovieInfo from "../components/MovieComponents/MovieInfo.tsx";
+import MovieTrailerComponent from "../components/MovieTrailerComponent/MovieTrailerComponent.tsx";
 
 const MoviesDetailsPage = () => {
     return (

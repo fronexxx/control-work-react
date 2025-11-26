@@ -1,10 +1,10 @@
 import {useEffect} from "react";
-import {useAppDispatch, useAppSelector} from "../redux/store.ts";
-import {movieActions} from "../redux/slices/MovieSlice.ts";
+import {useAppDispatch, useAppSelector} from "../../redux/store.ts";
+import {movieActions} from "../../redux/slices/MovieSlice.ts";
 import MovieCard from "./MovieCard.tsx";
-import '../css/MovieCard.css';
+import '../../css/MovieCard.css';
 import {useSearchParams} from "react-router";
-import {genreActions} from "../redux/slices/GenreSlice.ts";
+import {genreActions} from "../../redux/slices/GenreSlice.ts";
 
 
 const MovieList = () => {
@@ -25,7 +25,7 @@ const MovieList = () => {
     return (
         <div className="movie-grid">
             {moviesToShow.map(movie => (
-                <MovieCard key={movie.id} movie={movie} />
+                <MovieCard key={movie.id} movie={movie}/>
             ))}
         </div>
     );

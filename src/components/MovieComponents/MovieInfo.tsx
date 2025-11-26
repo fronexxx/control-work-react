@@ -1,9 +1,9 @@
 import {useParams} from "react-router";
 import {useEffect} from "react";
-import {useAppDispatch, useAppSelector} from "../redux/store.ts";
-import {movieActions} from "../redux/slices/MovieSlice.ts";
-import {backdropUrl, posterUrl} from "../urls/urls.ts";
-import '../css/MovieInfo.css';
+import {useAppDispatch, useAppSelector} from "../../redux/store.ts";
+import {movieActions} from "../../redux/slices/MovieSlice.ts";
+import {backdropUrl, posterUrl} from "../../urls/urls.ts";
+import '../../css/MovieInfo.css';
 
 const MovieInfo = () => {
     const {id} = useParams();

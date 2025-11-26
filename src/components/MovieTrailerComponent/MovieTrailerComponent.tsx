@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {getMovieTrailerById} from "../services/api.services.ts";
+import {getMovieTrailerById} from "../../services/api.services.ts";
 
 const MovieTrailerComponent = () => {
     const {id} = useParams();

@@ -1,14 +1,20 @@
-import type {IMovie} from "../models/IMovie";
-import '../css/MovieCard.css';
+import type {IMovie} from "../../models/IMovie.ts";
+import '../../css/MovieCard.css';
 import {Link} from "react-router";
-import {posterUrl} from "../urls/urls.ts";
+import {posterUrl} from "../../urls/urls.ts";
+import {useAppSelector} from "../../redux/store.ts";
+import GenreBadge from "../../Badges/GenreBadge.tsx";
 
 
 interface MovieCardProps {
     movie: IMovie;
 }
 
+
 const MovieCard = ({movie}: MovieCardProps) => {
+    const AllGenres = useAppSelector(state => state.genreStoreSlice.genres);
+    const movieGenres = movie.genre_ids?.map(id => AllGenres.find(genre => genre.id === id)?.name)
+        .filter(Boolean);
 
     return (
         <div className="movie-card">
@@ -27,6 +33,11 @@ const MovieCard = ({movie}: MovieCardProps) => {
                     <p className="movie-card__rating">
                         ⭐ {movie.vote_average.toFixed(1)} ({movie.vote_count} votes)
                     </p>
+                    <div className='movie-card__genres'>
+                        {movieGenres?.map((name, index) => (
+                            <GenreBadge key={index} name={name!}/>
+                            ))}
+                    </div>
                 </div>
             </Link>
         </div>

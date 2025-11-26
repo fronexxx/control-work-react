@@ -1,6 +1,6 @@
-import MovieList from "../components/MovieList.tsx";
-import HeaderComponent from "../components/HeaderComponent.tsx";
-import PaginationComponent from "../components/PaginationComponent.tsx";
+import MovieList from "../components/MovieComponents/MovieList.tsx";
+import HeaderComponent from "../components/HeaderComponent/HeaderComponent.tsx";
+import PaginationComponent from "../components/PaginationComponent/PaginationComponent.tsx";
 
 const MoviesPage = () => {
     return (

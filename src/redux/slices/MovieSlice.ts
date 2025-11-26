@@ -1,11 +1,12 @@
 import type {IMovie} from "../../models/IMovie.ts";
 import {createAsyncThunk, createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import {getMovieById, getMovies} from "../../services/api.services.ts";
+import {getMovieById, getMovies, searchMovies} from "../../services/api.services.ts";
 import type {IMovieExpanded} from "../../models/IMovieExpanded.ts";
 
 type MovieStateType = {
     movies: IMovie[],
     selectedMovie: IMovieExpanded | null;
+
 };
 const initMovieSliceState: MovieStateType = {
     movies: [],
@@ -30,6 +31,15 @@ const loadSelectedMovie = createAsyncThunk("loadSelectedMovie", async (id: strin
     }
 });
 
+const searchMoviesThunk = createAsyncThunk("searchMovies", async (query: string, thunkAPI) => {
+    try {
+        const movies = await searchMovies(query);
+        return thunkAPI.fulfillWithValue(movies);
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+});
+
 export const MovieSlice = createSlice({
     name: 'MovieSlice',
     initialState: initMovieSliceState,
@@ -41,8 +51,11 @@ export const MovieSlice = createSlice({
             })
             .addCase(loadSelectedMovie.fulfilled, (state, action: PayloadAction<IMovieExpanded>) => {
                 state.selectedMovie = action.payload
-            }),
+            })
+            .addCase(searchMoviesThunk.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
+                state.movies = action.payload
+            })
 
 });
 
-export const movieActions = {...MovieSlice.actions, loadMovies, loadSelectedMovie};
+export const movieActions = {...MovieSlice.actions, loadMovies, loadSelectedMovie, searchMoviesThunk};
