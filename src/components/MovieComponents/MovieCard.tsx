@@ -3,7 +3,8 @@ import '../../css/MovieCard.css';
 import {Link} from "react-router";
 import {posterUrl} from "../../urls/urls.ts";
 import {useAppSelector} from "../../redux/store.ts";
-import GenreBadge from "../../Badges/GenreBadge.tsx";
+import GenreBadgeComponent from "../Badges/GenreBadgeComponent.tsx";
+import StarsRatingComponent from "../stars-rating/StarsRatingComponent.tsx";
 
 
 interface MovieCardProps {
@@ -30,12 +31,14 @@ const MovieCard = ({movie}: MovieCardProps) => {
 
                     <p className="movie-card__date">📅 {movie.release_date}</p>
 
+
                     <p className="movie-card__rating">
-                        ⭐ {movie.vote_average.toFixed(1)} ({movie.vote_count} votes)
+                        <StarsRatingComponent rating={movie.vote_average}/>
+                        ({movie.vote_count} votes)
                     </p>
                     <div className='movie-card__genres'>
                         {movieGenres?.map((name, index) => (
-                            <GenreBadge key={index} name={name!}/>
+                            <GenreBadgeComponent key={index} name={name!}/>
                             ))}
                     </div>
                 </div>

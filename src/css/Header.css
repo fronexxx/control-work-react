@@ -55,3 +55,29 @@
 .header-user p {
     color: white;
 }
+
+.back-btn-icon {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.back-btn-icon:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.back-btn-icon:active {
+    transform: scale(0.92);
+}
+
+

@@ -34,6 +34,13 @@ const HeaderComponent = () => {
                     <option key={genre.id} value={genre.id}>{genre.name}</option>
                 ))}
             </select>
+            <button
+                className="back-btn-icon"
+                onClick={() => setSearchParams({ page: '1' })}
+                title="Back to page 1"
+            >
+                ⟵
+            </button>
 
             <SearchMovieComponent/>
 
