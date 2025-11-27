@@ -32,10 +32,10 @@ const MovieCard = ({movie}: MovieCardProps) => {
                     <p className="movie-card__date">📅 {movie.release_date}</p>
 
 
-                    <StarsRatingComponent rating={movie.vote_average}/>
-                    <p className="movie-card__rating">
+                    <div className="movie-card__rating">
+                        <StarsRatingComponent rating={movie.vote_average}/>
                         ({movie.vote_count} votes)
-                    </p>
+                    </div>
                     <div className='movie-card__genres'>
                         {movieGenres?.map((name, index) => (
                             <GenreBadgeComponent key={index} name={name!}/>
