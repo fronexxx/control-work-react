@@ -1,4 +1,4 @@
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../redux/store.ts";
 import {movieActions} from "../../redux/slices/MovieSlice.ts";
@@ -7,6 +7,7 @@ import '../../css/MovieInfo.css';
 
 const MovieInfo = () => {
     const {id} = useParams();
+    const navigate = useNavigate();
     const movie = useAppSelector(state => state.movieStoreSlice.selectedMovie);
     const dispatch = useAppDispatch();
 
@@ -15,9 +16,14 @@ const MovieInfo = () => {
     }, [id]);
 
     if(!movie) return <div>Loading...</div>;
+    const backToPreviousPageBtn = () => {
+        navigate(-1)
+    };
     return (
         <div className="movie-info-page" style={{backgroundImage: `url(${backdropUrl + movie.backdrop_path})`}}>
             <div className="movie-info-overlay">
+                <button onClick={backToPreviousPageBtn} className="movie-back-button">← Back</button>
+
                 <div className="movie-info-container">
                     <img className="movie-info-poster" src={posterUrl + movie.poster_path} alt={movie.title}/>
 

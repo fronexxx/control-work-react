@@ -84,3 +84,39 @@
     text-align: center;
     color: #fff;
 }
+.movie-back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 8px 16px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(6px);
+    transition: all 0.25s ease;
+}
+
+.movie-back-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateX(-4px);
+}
+
+.movie-back-button:active {
+    transform: scale(0.97);
+}
+

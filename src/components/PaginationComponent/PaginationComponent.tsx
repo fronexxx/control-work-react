@@ -1,17 +1,33 @@
 import {useSearchParams} from "react-router";
 import '../../css/Pagination.css';
+import {useAppSelector} from "../../redux/store.ts";
 
 const PaginationComponent = () => {
     const [searchParams, setSearchParams] = useSearchParams({page: '1'});
 
-    let currentPage = Number(searchParams.get('page') || '1');
+    const currentPage = Number(searchParams.get('page') || '1');
+
+    const genre = useAppSelector(state => state.genreStoreSlice.selectedGenre);
+
+    const updatePage = (page: number) => {
+        const params: { page: string; genre?: string } = {
+            page: page.toString()
+        };
+
+        if (genre) {
+            params.genre = genre;
+        }
+
+        setSearchParams(params);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const onPrevClick = () => {
-        setSearchParams({page: (--currentPage).toString()})
+        updatePage(currentPage - 1);
     };
 
     const onNextClick = () => {
-        setSearchParams({page: (++currentPage).toString()})
+        updatePage(currentPage + 1);
     };
 
     return (

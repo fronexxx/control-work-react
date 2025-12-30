@@ -9,7 +9,8 @@ import {useSearchParams} from "react-router";
 const HeaderComponent = () => {
     const genres = useAppSelector(state => state.genreStoreSlice.genres);
     const dispatch = useAppDispatch();
-    const [, setSearchParams] = useSearchParams({page: '1'});
+    const [searchParams, setSearchParams] = useSearchParams({page: '1'});
+    const genreFromUrl = searchParams.get('genre');
     useEffect(() => {
         dispatch(genreActions.loadGenres())
     }, []);
@@ -20,15 +21,18 @@ const HeaderComponent = () => {
         setSearchParams({page: '1'});
 
         if (genreId === '') {
+            setSearchParams({page: '1'});
+
             dispatch(genreActions.clearSelectedGenre());
             dispatch(movieActions.loadMovies('1'));
         } else {
+            setSearchParams({page: '1', genre: genreId});
             dispatch(genreActions.loadMoviesByGenres({genreId, page: '1'}));
         }
     };
     return (
         <header className="header">
-            <select className="genre-select" onChange={onChange}>
+            <select className="genre-select" value={genreFromUrl || ''} onChange={onChange}>
                 <option value="">All Genres</option>
                 {genres.map(genre => (
                     <option key={genre.id} value={genre.id}>{genre.name}</option>
